@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-F-CAL</title>
+<style>
+    body{
+background:linear-gradient(45deg, rgb(104, 104, 208),rgb(27, 19, 19)) ;      
+background-repeat: no-repeat;    
+ height: 98vh;    
+ overflow: hidden;  
+    }
+.hold{
+    width:49.5vh ;
+height: 63.5vh;
+background-color: rgb(51, 49, 47);
+margin: 5vh;
+margin-left: 68vh;
+margin-top: 15vh;
+filter: drop-shadow(0 0 4vh rgb(248, 0, 224));
+border: 5px solid rgb(117, 68, 0);
+z-index: -1000;
+}
+table{
+    width: 50vh;
+  height: 65vh;
+margin-left: -0.3vh;
+border: none;
+}
+.value{
+    width: 45.8vh;
+    height: 5vh;
+    text-align: right;
+    border-radius: 5px;
+    font-size: 3vh;
+}
+.show-time{
+    height: 4vh;
+    width: 29.8vh;
+    border-left: 5px solid rgb(77, 255, 0);
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom: 5px solid green;
+}
+input::placeholder{
+    margin-right: 30vh;
+    font-size: 3vh;
+    font-family: serif,italic;
+    font-style:oblique;
+    font-weight: bold;
+}
+.number{
+    width: 7vh;
+   background-color: black;
+    border-bottom: 2px solid rgb(78, 129, 74);
+    color: white ;
+
+}
+
+.delet{
+        background-color: black;
+        color: white;
+}
+.symbol{
+        width: 7vh;
+        background-color: black;
+color: white;
+
+}
+.function{
+   width: 7vh;
+   color: black;
+
+}
+.switch-on{
+     width: 7vh;
+     background-color: rgb(105, 138, 71);
+     color: white;
+     border-bottom: 2px solid rgb(216, 90, 0);
+}
+.switch-off{
+     width: 7vh;
+     background-color: rgb(209, 9, 9);
+     color: aliceblue;
+          border-bottom: 2px solid rgb(216, 90, 0);
+
+}
+th{
+    border: none;
+}
+button{
+    color: aqua;
+    border-radius: 5px;
+    z-index: 1000;
+}
+button:hover{
+font-family: serif;
+filter: drop-shadow(0 0 5px rgb(255, 255, 255));
+}
+.evaluate{
+    width: 7vh;
+    background-color: darkslategrey;
+}
+p{
+    text-align: center;
+    margin-left: -23vh;
+    animation: changecolor 5s infinite;
+}
+@keyframes changecolor{
+    0%{color: blanchedalmond;}
+    100%{color: rgb(249, 137, 0);}
+}
+
+
+</style>
+
+</head>
+<body>
+    <p>WORKS MORE EFFICIENT AND FLEXIBLE</p>
+    <section class="hold">
+
+<table border="5">
+
+<tr>
+<th colspan="6"><input type="text" placeholder=" enter value" class="value" id="for" readonly></th>
+
+</tr>
+
+<tr>
+    <th colspan="4"> <input type="time" class="show-time" id="realtime"></th>
+  
+
+    <th> <button class="switch-off" onclick="clearAll()">off</button></th>
+
+    <th> <button class="switch-on" onclick="clearAll()">on</button></th>
+
+</tr>
+
+<tr>
+    <th> <button class="evaluate" onclick="mathFunc('sin')">sin</button></th>
+    <th> <button class="evaluate" onclick="mathFunc('cos')">cos</button></th>
+
+    <th> <button class="evaluate" onclick="mathFunc('tan')">tan</button></th>
+
+    <th> <button class="number" onclick="addToDisplay('0.5')">½</button></th>
+
+    <th> <button class="number" onclick="addToDisplay('/100')">%</button></th>
+
+    <th> <button class="function">MC</button></th>
+
+</tr>
+
+<tr>
+    <th> <button class="symbol" onclick="mathFunc('sqrt')">✓</button></th>
+    <th> <button class="symbol" onclick="addToDisplay('(')">(</button></th>
+
+    <th> <button class="symbol" onclick="addToDisplay(')')">)</button></th>
+
+    <th> <button class="symbol" onclick="addToDisplay('/')">÷</button></th>
+
+    <th> <button class="number" onclick="addToDisplay('**2')">10<sup>2</sup></button></th>
+
+    <th> <button class="function">MR</button></th>
+
+</tr>
+
+<tr>
+    <th> <button class="number" onclick="addToDisplay('7')">7</button></th>
+    <th> <button class="number" onclick="addToDisplay('8')">8</button></th>
+
+    <th> <button class="number" onclick="addToDisplay('9')">9</button></th>
+
+    <th> <button class="symbol" onclick="addToDisplay('*')" >×</button></th>
+
+    <th> <button class="symbol" onclick="addToDisplay('**')">x<sup>y</sup></button></th>
+
+    <th> <button class="function">M+</button></th>
+
+</tr>
+
+
+<tr>
+    <th> <button class="number" onclick="addToDisplay('4')" >4</button></th>
+    <th> <button class="number" onclick="addToDisplay('5')">5</button></th>
+
+    <th> <button class="number" onclick="addToDisplay('6')">6</button></th>
+
+    <th> <button class="symbol" onclick="addToDisplay('-')">-</button></th>
+
+    <th> <button class="symbol" onclick="addToDisplay('**2')">x<sup>2</sup></button></th>
+
+    <th> <button class="function">M-</button></th>
+
+</tr>
+
+<tr>
+    <th> <button class="number" id="one" onclick="addToDisplay('1')" >1</button></th>
+    <th> <button class="number" id="two" onclick="addToDisplay('2')">2</button></th>
+
+    <th> <button class="number"onclick="addToDisplay('3')">3</button></th>
+
+    <th> <button class="symbol"  onclick="addToDisplay('+')">+</button></th>
+
+    <th> <button class="delet" onclick="clearAll()">clear</button></th>
+
+    <th> <button class="function">MS</button></th>
+
+</tr>
+<tr>
+    <th> <button class="symbol" onclick="addToDisplay('.')">•</button></th>
+    <th> <button class="number" onclick="addToDisplay('0')">0</button></th>
+
+    <th> <button class="symbol" onclick="plusMinus()">±</button></th>
+
+    <th> <button class="symbol" onclick="calculate()">=</button></th>
+
+    <th> <button class="symbol" onclick="backspace()">⇐</button></th>
+
+    <th> <button class="function">M^</button></th>
+
+</tr>
+
+
+</table>
+
+    </section>
+
+    <script>
+        const display = document.getElementById('for');
+
+        // Kongera ibyo ukanze kuri display
+        function addToDisplay(value) {
+            display.value += value;
+        }
+
+        // Guhanagura byose
+        function clearAll() {
+            display.value = "";
+        }
+
+        // Guhanagura inyuguti imwe (Backspace)
+        function backspace() {
+            display.value = display.value.slice(0, -1);
+        }
+
+        // Kubara igisubizo (Evaluation)
+        function calculate() {
+            try {
+                // Eval akora imibare yose iri muri string
+                display.value = eval(display.value);
+            } catch (error) {
+                display.value = "Error";
+            }
+        }
+
+        //± Guhindura ikimenyetso
+        function plusMinus() {
+            if(display.value !== "") {
+                if(display.value.charAt(0) === '-') {
+                    display.value = display.value.slice(1);
+                } else {
+                    display.value = '-' + display.value;
+                }
+            }
+        }
+
+        // Imibare ya Sin, Cos, Tan, Sqrt
+        function mathFunc(type) {
+            let val = parseFloat(display.value);
+            if (isNaN(val)) return;
+            
+            if (type === 'sin') display.value = Math.sin(val * Math.PI / 180).toFixed(4);
+            if (type === 'cos') display.value = Math.cos(val * Math.PI / 180).toFixed(4);
+            if (type === 'tan') display.value = Math.tan(val * Math.PI / 180).toFixed(4);
+            if (type === 'sqrt') display.value = Math.sqrt(val).toFixed(4);
+        }
+
+        // Gushyiraho isaha ya nyayo (Real-time)
+        function updateTime() {
+            const now = new Date();
+            const timeStr = now.getHours().toString().padStart(2, '0') + ":" + 
+                            now.getMinutes().toString().padStart(2, '0');
+            document.getElementById('realtime').value = timeStr;
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+    </script>
+
+</body>
+</html>
