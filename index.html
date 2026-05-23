@@ -38,10 +38,16 @@ border: none;
 .show-time{
     height: 4vh;
     width: 29.8vh;
-    border-left: 5px solid rgb(77, 255, 0);
+    padding-top: 5px;
+    background-color: rgb(65, 66, 68);
+    border-left: 2px solid rgb(77, 255, 0);
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
     border-bottom: 5px solid green;
+    color: rgb(201, 201, 201);
+    text-shadow: 0.7px 0.7px 0.7px rgb(0, 0, 0), 0.7px 0.7px 0.7px rgb(224, 0, 0);
+    gap: 20vh;
+    font-size: 2.2vh;
 }
 input::placeholder{
     margin-right: 30vh;
@@ -128,7 +134,7 @@ p{
 </tr>
 
 <tr>
-    <th colspan="4"> <input type="time" class="show-time" id="realtime"></th>
+    <th colspan="4"> <div class="show-time" id="realtime"></div></th>
   
 
     <th> <button class="switch-off" onclick="clearAll()">off</button></th>
@@ -229,32 +235,26 @@ p{
     <script>
         const display = document.getElementById('for');
 
-        // Kongera ibyo ukanze kuri display
         function addToDisplay(value) {
             display.value += value;
         }
 
-        // Guhanagura byose
         function clearAll() {
             display.value = "";
         }
 
-        // Guhanagura inyuguti imwe (Backspace)
         function backspace() {
             display.value = display.value.slice(0, -1);
         }
 
-        // Kubara igisubizo (Evaluation)
         function calculate() {
             try {
-                // Eval akora imibare yose iri muri string
                 display.value = eval(display.value);
             } catch (error) {
                 display.value = "Error";
             }
         }
 
-        //± Guhindura ikimenyetso
         function plusMinus() {
             if(display.value !== "") {
                 if(display.value.charAt(0) === '-') {
@@ -265,7 +265,6 @@ p{
             }
         }
 
-        // Imibare ya Sin, Cos, Tan, Sqrt
         function mathFunc(type) {
             let val = parseFloat(display.value);
             if (isNaN(val)) return;
@@ -275,16 +274,25 @@ p{
             if (type === 'tan') display.value = Math.tan(val * Math.PI / 180).toFixed(4);
             if (type === 'sqrt') display.value = Math.sqrt(val).toFixed(4);
         }
+function updateTime() {
+    const now = new Date();
+    
+    let hours = now.getHours();
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const seconds = now.getSeconds().toString().padStart(2, '0');
+    
+    const day = now.getDate().toString().padStart(2, '0');
+    const month = (now.getMonth() + 1).toString().padStart(2, '0'); 
+    const year = now.getFullYear();
+    
+    document.getElementById("realtime").innerHTML = `${hours}:${minutes}:${seconds} ${ampm} | ${day}/${month}/${year}`;
 
-        // Gushyiraho isaha ya nyayo (Real-time)
-        function updateTime() {
-            const now = new Date();
-            const timeStr = now.getHours().toString().padStart(2, '0') + ":" + 
-                            now.getMinutes().toString().padStart(2, '0');
-            document.getElementById('realtime').value = timeStr;
-        }
-        setInterval(updateTime, 1000);
-        updateTime();
+}
+setInterval(updateTime, 1000);
+updateTime();
     </script>
 
 </body>
