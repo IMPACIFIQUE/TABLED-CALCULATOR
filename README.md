@@ -13,10 +13,7 @@ A scientific calculator built with HTML, CSS and JavaScript. The keys are laid o
 - Live date and time display
 - Dark design with a glowing border
 
-## Files
 
-- `index.html`: the calculator page and its JavaScript
-- `style.css`: the calculator design
 
 ## Run It
 
