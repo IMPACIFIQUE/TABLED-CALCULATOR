@@ -1,12 +1,17 @@
 # TABLED-CALCULATOR
 
-A simple calculator built with HTML, CSS and JavaScript, using an HTML table for the layout. It also shows the current date and time.
+A scientific calculator built with HTML, CSS and JavaScript. The keys are laid out with an HTML table, and it shows a live date and time.
 
 ## Features
 
-- Basic calculations (add, subtract, multiply, divide)
-- Calculator keys laid out with a table
+- Basic operations: add, subtract, multiply, divide, percent and plus/minus
+- Scientific functions: sin, cos, tan, square root, x², xʸ, 10ˣ and ½
+- Brackets for longer calculations
+- Memory keys: MC, MR, M+, M-, MS and M^
+- Clear and backspace keys
+- On and off buttons
 - Live date and time display
+- Dark design with a glowing border
 
 ## Files
 
